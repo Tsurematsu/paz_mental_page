@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitar Eliminación de Datos — Paz Mental</title>
+<style>
+  :root {
+    --teal: #0d9488;
+    --teal-dark: #0f766e;
+    --teal-light: #ccfbf1;
+    --ink: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --bg: #f7f8f9;
+    --info-bg: #f0fdfa;
+    --info-border: #99f6e4;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    padding: 24px 40px;
+  }
+
+  .brand {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+    margin: 0;
+  }
+
+  .brand-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 2px 0 0;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 48px auto;
+    padding: 0 24px;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.08);
+    padding: 48px;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--teal);
+    margin: 0 0 8px;
+  }
+
+  .updated {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 0 32px;
+  }
+
+  .intro {
+    margin-bottom: 32px;
+  }
+
+  .info-box {
+    background: var(--info-bg);
+    border: 1px solid var(--info-border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+
+  .info-box h2 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: var(--teal-dark);
+    font-weight: 700;
+  }
+
+  .info-box p {
+    margin: 0;
+    color: #115e59;
+    font-size: 14px;
+  }
+
+  h2.section {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--teal);
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .field {
+    margin-bottom: 22px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--ink);
+    background: #ffffff;
+    font-family: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px var(--teal-light);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .data-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .data-option:hover {
+    border-color: var(--teal);
+    background: #fafffe;
+  }
+
+  .data-option.checked {
+    border-color: var(--teal);
+    background: var(--teal-light);
+  }
+
+  .data-option input[type="checkbox"] {
+    margin-top: 3px;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--teal);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .data-option .option-text {
+    flex: 1;
+  }
+
+  .data-option .option-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    margin: 0 0 3px;
+    display: block;
+  }
+
+  .data-option .option-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    background: #fafafa;
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    margin-top: 3px;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--teal);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .checkbox-row label {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .checkbox-row label strong {
+    font-weight: 600;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    background: var(--teal);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background 0.15s ease;
+    font-family: inherit;
+  }
+
+  button[type="submit"]:hover {
+    background: var(--teal-dark);
+  }
+
+  .footnote {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .footnote a {
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  #confirmation {
+    display: none;
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  #confirmation .check {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+  }
+
+  #confirmation h2 {
+    color: var(--teal);
+    border: none;
+    margin: 0 0 12px;
+  }
+
+  #confirmation p {
+    color: var(--muted);
+    max-width: 440px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="brand">Paz Mental</p>
+  <p class="brand-sub">Un servicio de TotemOS</p>
+</header>
+
+<main>
+  <div class="card">
+
+    <div id="form-view">
+      <h1>Solicitar Eliminación de Datos</h1>
+      <p class="updated">Elimine categorías específicas de información sin cerrar su cuenta.</p>
+
+      <p class="intro">
+        Si no desea eliminar su cuenta por completo, puede solicitar la eliminación de categorías
+        específicas de datos. Su cuenta y acceso a la aplicación se mantendrán activos.
+      </p>
+
+      <div class="info-box">
+        <h2>ℹ Diferencia con la eliminación de cuenta</h2>
+        <p>
+          Esta solicitud borra únicamente la información que usted seleccione a continuación.
+          Su perfil y acceso a "Paz Mental" no se verán afectados, salvo que la categoría eliminada
+          sea necesaria para prestar un servicio específico (por ejemplo, el historial de citas).
+        </p>
+      </div>
+
+      <form id="delete-data-form">
+
+        <h2 class="section">1. Identificación de la Cuenta</h2>
+
+        <div class="field">
+          <label for="fullname">Nombre completo</label>
+          <input type="text" id="fullname" name="fullname" required placeholder="Como aparece en su perfil">
+        </div>
+
+        <div class="field">
+          <label for="email">Correo electrónico asociado a la cuenta</label>
+          <input type="email" id="email" name="email" required placeholder="usted@ejemplo.com">
+          <p class="hint">Debe coincidir con el correo usado para iniciar sesión vía Google.</p>
+        </div>
+
+        <h2 class="section">2. Datos a Eliminar</h2>
+        <p class="hint" style="margin-bottom: 16px;">Seleccione una o varias categorías.</p>
+
+        <label class="data-option" for="d1">
+          <input type="checkbox" id="d1" name="data" value="salud">
+          <span class="option-text">
+            <span class="option-title">Información de salud sensible</span>
+            <span class="option-desc">Historial y notas generadas durante sus citas de acompañamiento psicosocial.</span>
+          </span>
+        </label>
+
+        <label class="data-option" for="d2">
+          <input type="checkbox" id="d2" name="data" value="citas">
+          <span class="option-text">
+            <span class="option-title">Historial de citas</span>
+            <span class="option-desc">Fechas, horarios y registros de citas agendadas o pasadas.</span>
+          </span>
+        </label>
+
+        <label class="data-option" for="d3">
+          <input type="checkbox" id="d3" name="data" value="uso">
+          <span class="option-text">
+            <span class="option-title">Datos de uso y rendimiento</span>
+            <span class="option-desc">Interacción con la app (visualización de videos, tips) y registros de errores.</span>
+          </span>
+        </label>
+
+        <label class="data-option" for="d4">
+          <input type="checkbox" id="d4" name="data" value="perfil">
+          <span class="option-text">
+            <span class="option-title">Datos de perfil no esenciales</span>
+            <span class="option-desc">Información adicional de perfil que no sea necesaria para autenticación.</span>
+          </span>
+        </label>
+
+        <div class="field" style="margin-top: 24px;">
+          <label for="comments">Detalles adicionales (opcional)</label>
+          <textarea id="comments" name="comments" placeholder="Especifique cualquier dato adicional que desee eliminar"></textarea>
+        </div>
+
+        <h2 class="section">3. Confirmación</h2>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="confirm1" required>
+          <label for="confirm1">Entiendo que la eliminación de estos datos puede ser <strong>irreversible</strong> y podría afectar funciones que dependen de ellos.</label>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="confirm2" required>
+          <label for="confirm2">Confirmo que soy el titular de esta cuenta y solicito voluntariamente la eliminación de los datos seleccionados.</label>
+        </div>
+
+        <button type="submit" id="submit-btn">Solicitar eliminación de datos</button>
+
+        <p class="footnote">¿Desea eliminar su cuenta por completo en lugar de datos específicos? <a href="eliminar-cuenta.html">Vaya al formulario de eliminación de cuenta</a>.</p>
+      </form>
+    </div>
+
+    <div id="confirmation">
+      <div class="check">✓</div>
+      <h2>Solicitud recibida</h2>
+      <p>Hemos recibido su solicitud de eliminación de datos. Procesaremos la eliminación de las
+      categorías seleccionadas y le enviaremos un correo de confirmación una vez completada.</p>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  document.querySelectorAll('.data-option').forEach(function(opt) {
+    const checkbox = opt.querySelector('input[type="checkbox"]');
+    checkbox.addEventListener('change', function() {
+      opt.classList.toggle('checked', checkbox.checked);
+    });
+  });
+
+  document.getElementById('delete-data-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const anyChecked = document.querySelectorAll('input[name="data"]:checked').length > 0;
+    if (!anyChecked) {
+      alert('Por favor seleccione al menos una categoría de datos para eliminar.');
+      return;
+    }
+    // Aquí se conectaría con el backend real para procesar la solicitud
+    document.getElementById('form-view').style.display = 'none';
+    document.getElementById('confirmation').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
